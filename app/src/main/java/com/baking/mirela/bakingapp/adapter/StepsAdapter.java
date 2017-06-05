@@ -46,12 +46,14 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.ViewHolder> 
         @Override
         public void onClick(View v) {
             StepFragment stepFragment = new StepFragment();
-            stepFragment.setSteps(mSteps.get(getAdapterPosition()));
+            stepFragment.setSteps(mSteps, getAdapterPosition());
+            stepFragment.setAppCompatActivity(mActivity);
             //ingrediensFragment.setRecipe(recipe.getIngredience());
             mActivity.getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container,stepFragment).commit();
         }
     }
+
     @Override
     public StepsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.step_view, parent, false);

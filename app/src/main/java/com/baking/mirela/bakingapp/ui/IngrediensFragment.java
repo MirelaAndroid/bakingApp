@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.baking.mirela.bakingapp.R;
+import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.model.Ingredient;
 
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class IngrediensFragment extends Fragment {
         for(int i=0; i< ingredience.size(); i++){
             items += ingredience.get(i).getIngredient() + ": " + ingredience.get(i).getQuantity() + ingredience.get(i).getMeasure() + "\n\n";
         }
+        GlobalValues.setIngredients(items);
         list.setText(items);
 
         return rootView;

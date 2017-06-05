@@ -4,10 +4,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.baking.mirela.bakingapp.R;
@@ -33,14 +35,23 @@ import java.util.ArrayList;
 
 public class StepFragment extends Fragment {
 
-    private Steps step;
+    private ArrayList<Steps> step;
+    private AppCompatActivity appCompatActivity;
     TextView description;
 
+    private StepFragment stepFragment = this;
+    private int id;
     private SimpleExoPlayer mExoPlayer;
     private SimpleExoPlayerView mPlayerView;
 
-    public void setSteps(Steps step) {
+    private Button next, back;
+    public void setSteps( ArrayList<Steps>  step, int id) {
         this.step = step;
+        this.id = id;
+    }
+
+    public void setAppCompatActivity(AppCompatActivity appCompatActivity){
+        this.appCompatActivity = appCompatActivity;
     }
 
     @Nullable
@@ -48,19 +59,48 @@ public class StepFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_step, container, false);
-
-        // Initialize the player view.
-
+        back = (Button)rootView.findViewById(R.id.back);
+        next = (Button)rootView.findViewById(R.id.next);
         mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.playerView);
         Log.d("kotek", mPlayerView + "");
         description = (TextView)rootView.findViewById(R.id.textView);
-        description.setText(step.getDescription());
+        description.setText(step.get(id).getShortDescription());
 
+        if(step.get(id).getId() > 0) {
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    StepFragment stepFragment = new StepFragment();
+                    stepFragment.setSteps(step, id-1);
+                    stepFragment.setAppCompatActivity(appCompatActivity);
+                    //ingrediensFragment.setRecipe(recipe.getIngredience());
+                    appCompatActivity.getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container,stepFragment).commit();
+                }
+            });
+        } else back.setVisibility(View.INVISIBLE);
+
+        if(step.get(id).getId() < step.size() - 1) {
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    StepFragment stepFragment = new StepFragment();
+                    stepFragment.setSteps(step, id+1);
+                    stepFragment.setAppCompatActivity(appCompatActivity);
+                    //ingrediensFragment.setRecipe(recipe.getIngredience());
+                    appCompatActivity.getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container,stepFragment).commit();
+                }
+            });
+        } else next.setVisibility(View.INVISIBLE);
         // Initialize the player.
-        if(!step.getVideoURL().isEmpty()) {
-            Log.d("kotek", step.getVideoURL());
-            initializePlayer(Uri.parse(step.getVideoURL()));
+        if(!step.get(id).getVideoURL().isEmpty()) {
+            Log.d("kotek", step.get(id).getVideoURL());
+            initializePlayer(Uri.parse(step.get(id).getVideoURL()));
+        } else  {
+            mPlayerView.setVisibility(View.INVISIBLE);
         }
         return rootView;
     }

@@ -17,6 +17,8 @@ import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.adapter.StepsAdapter;
 import com.baking.mirela.bakingapp.model.Recipe;
 
+import java.util.ArrayList;
+
 /**
  * Created by mirela on 4/6/2017.
  */
@@ -38,8 +40,9 @@ public class DetailRecipeFragment extends Fragment {
 
     public void setActivity(AppCompatActivity activity){
         appCompatActivity = activity;
-
     }
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

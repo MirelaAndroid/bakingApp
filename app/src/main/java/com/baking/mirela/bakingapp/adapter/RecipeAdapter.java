@@ -50,6 +50,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             Intent intent = new Intent(mActivity, DetailActivity.class);
 
             intent.putExtra("position", getAdapterPosition()); //Optional parameters
+
             mActivity.startActivity(intent);
 
         }
@@ -61,6 +62,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         mActivity = activity;
     }
 
+    public void update(ArrayList<Recipe> list) {
+        mDataset = list;
+        notifyDataSetChanged();
+    }
     // Create new views (invoked by the layout manager)
     @Override
     public RecipeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
@@ -84,6 +89,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
+        if(mDataset == null) return 0;
         return mDataset.size();
     }
 }
