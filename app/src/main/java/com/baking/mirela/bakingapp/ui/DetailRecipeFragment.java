@@ -20,17 +20,22 @@ import com.baking.mirela.bakingapp.model.Recipe;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by mirela on 4/6/2017.
  */
 
 public class DetailRecipeFragment extends Fragment {
+
+    @BindView(R.id.ingredient_button) Button ingredientButton;
+
     private Recipe recipe;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private AppCompatActivity appCompatActivity;
-    private Button ingredientButton;
 
     public DetailRecipeFragment() {
     }
@@ -47,10 +52,8 @@ public class DetailRecipeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
-
-        ingredientButton = (Button) rootView.findViewById(R.id.ingredient_button);
+        ButterKnife.bind(this, rootView);
         ingredientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.baking.mirela.bakingapp.R;
@@ -15,6 +16,9 @@ import com.baking.mirela.bakingapp.model.Ingredient;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by mirela on 4/6/2017.
  */
@@ -22,8 +26,8 @@ import java.util.ArrayList;
 public class IngrediensFragment extends Fragment {
 
 
+    @BindView(R.id.textView) TextView list;
     ArrayList<Ingredient> ingredience;
-    TextView list;
 
     public IngrediensFragment() {
     }
@@ -38,8 +42,7 @@ public class IngrediensFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_ingredients, container, false);
-
-        list = (TextView)rootView.findViewById(R.id.textView);
+        ButterKnife.bind(this, rootView);
         String items ="";
 
         if(ingredience == null) {

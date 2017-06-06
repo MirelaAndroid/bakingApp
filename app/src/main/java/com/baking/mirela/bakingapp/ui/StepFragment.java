@@ -30,22 +30,25 @@ import com.google.android.exoplayer2.util.Util;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by mirela on 5/6/2017.
  */
 
 public class StepFragment extends Fragment {
 
+    @BindView(R.id.back) Button back;
+    @BindView(R.id.next) Button next;
+    @BindView(R.id.stepText) TextView description;
+    @BindView(R.id.playerView) SimpleExoPlayerView mPlayerView;
+
     private ArrayList<Steps> step;
     private AppCompatActivity appCompatActivity;
-    TextView description;
 
-    private StepFragment stepFragment = this;
     private int id;
     private SimpleExoPlayer mExoPlayer;
-    private SimpleExoPlayerView mPlayerView;
-
-    private Button next, back;
 
     public void setSteps(ArrayList<Steps> step, int id) {
         this.step = step;
@@ -60,13 +63,8 @@ public class StepFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.fragment_step, container, false);
-        back = (Button) rootView.findViewById(R.id.back);
-        next = (Button) rootView.findViewById(R.id.next);
-        mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.playerView);
-        Log.d("kotek", mPlayerView + "");
-        description = (TextView) rootView.findViewById(R.id.textView);
+        ButterKnife.bind(this, rootView);
         if (step == null) {
             step = GlobalValues.getStep();
         }
