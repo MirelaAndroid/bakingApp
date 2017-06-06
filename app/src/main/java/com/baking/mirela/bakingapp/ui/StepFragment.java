@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.model.Steps;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -45,12 +46,14 @@ public class StepFragment extends Fragment {
     private SimpleExoPlayerView mPlayerView;
 
     private Button next, back;
-    public void setSteps( ArrayList<Steps>  step, int id) {
+
+    public void setSteps(ArrayList<Steps> step, int id) {
         this.step = step;
+        GlobalValues.setSteps(step);
         this.id = id;
     }
 
-    public void setAppCompatActivity(AppCompatActivity appCompatActivity){
+    public void setAppCompatActivity(AppCompatActivity appCompatActivity) {
         this.appCompatActivity = appCompatActivity;
     }
 
@@ -59,47 +62,58 @@ public class StepFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_step, container, false);
-        back = (Button)rootView.findViewById(R.id.back);
-        next = (Button)rootView.findViewById(R.id.next);
+        back = (Button) rootView.findViewById(R.id.back);
+        next = (Button) rootView.findViewById(R.id.next);
         mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.playerView);
         Log.d("kotek", mPlayerView + "");
-        description = (TextView)rootView.findViewById(R.id.textView);
+        description = (TextView) rootView.findViewById(R.id.textView);
+        if (step == null) {
+            step = GlobalValues.getStep();
+        }
         description.setText(step.get(id).getShortDescription());
 
-        if(step.get(id).getId() > 0) {
+        if (step.get(id).getId() > 0) {
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     StepFragment stepFragment = new StepFragment();
-                    stepFragment.setSteps(step, id-1);
+                    stepFragment.setSteps(step, id - 1);
                     stepFragment.setAppCompatActivity(appCompatActivity);
-                    //ingrediensFragment.setRecipe(recipe.getIngredience());
-                    appCompatActivity.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container,stepFragment).commit();
+                    if (GlobalValues.isTwoPane()) {
+                        appCompatActivity.getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container2, stepFragment).commit();
+                    } else {
+                        appCompatActivity.getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, stepFragment).commit();
+                    }
                 }
             });
         } else back.setVisibility(View.INVISIBLE);
 
-        if(step.get(id).getId() < step.size() - 1) {
+        if (step.get(id).getId() < step.size() - 1) {
             next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     StepFragment stepFragment = new StepFragment();
-                    stepFragment.setSteps(step, id+1);
+                    stepFragment.setSteps(step, id + 1);
                     stepFragment.setAppCompatActivity(appCompatActivity);
-                    //ingrediensFragment.setRecipe(recipe.getIngredience());
-                    appCompatActivity.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container,stepFragment).commit();
+                    if (GlobalValues.isTwoPane()) {
+                        appCompatActivity.getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container2, stepFragment).commit();
+                    } else {
+                        appCompatActivity.getSupportFragmentManager().beginTransaction();
+                    }
+
                 }
             });
         } else next.setVisibility(View.INVISIBLE);
         // Initialize the player.
-        if(!step.get(id).getVideoURL().isEmpty()) {
+        if (!step.get(id).getVideoURL().isEmpty()) {
             Log.d("kotek", step.get(id).getVideoURL());
             initializePlayer(Uri.parse(step.get(id).getVideoURL()));
-        } else  {
+        } else {
             mPlayerView.setVisibility(View.INVISIBLE);
         }
         return rootView;
@@ -116,7 +130,7 @@ public class StepFragment extends Fragment {
      * Release ExoPlayer.
      */
     private void releasePlayer() {
-        if(mExoPlayer == null) return;
+        if (mExoPlayer == null) return;
         mExoPlayer.stop();
         mExoPlayer.release();
         mExoPlayer = null;
@@ -124,6 +138,7 @@ public class StepFragment extends Fragment {
 
     /**
      * Initialize ExoPlayer.
+     *
      * @param mediaUri The URI of the sample to play.
      */
     private void initializePlayer(Uri mediaUri) {
@@ -132,7 +147,7 @@ public class StepFragment extends Fragment {
             TrackSelector trackSelector = new DefaultTrackSelector();
             LoadControl loadControl = new DefaultLoadControl();
             mExoPlayer = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, loadControl);
-            if(mPlayerView == null) {
+            if (mPlayerView == null) {
                 Log.e("kotek", "mplayer view is null");
                 return;
             }

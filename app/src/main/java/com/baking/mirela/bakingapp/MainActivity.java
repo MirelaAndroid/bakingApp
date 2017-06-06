@@ -3,7 +3,6 @@ package com.baking.mirela.bakingapp;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.GridView;
 
 import com.baking.mirela.bakingapp.model.Recipe;
 import com.baking.mirela.bakingapp.parser.JsonParser;
@@ -14,8 +13,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private boolean mTwoPane;
     public AppCompatActivity appCompatActivity;
 
     @Override

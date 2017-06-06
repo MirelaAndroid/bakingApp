@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.model.Recipe;
 import com.baking.mirela.bakingapp.model.Steps;
@@ -49,8 +50,14 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.ViewHolder> 
             stepFragment.setSteps(mSteps, getAdapterPosition());
             stepFragment.setAppCompatActivity(mActivity);
             //ingrediensFragment.setRecipe(recipe.getIngredience());
-            mActivity.getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container,stepFragment).commit();
+            if(GlobalValues.isTwoPane()) {
+                mActivity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container2, stepFragment).commit();
+            } else {
+
+                mActivity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, stepFragment).commit();
+            }
         }
     }
 

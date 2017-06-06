@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.adapter.StepsAdapter;
 import com.baking.mirela.bakingapp.model.Recipe;
@@ -55,8 +56,14 @@ public class DetailRecipeFragment extends Fragment {
             public void onClick(View v) {
                 IngrediensFragment ingrediensFragment = new IngrediensFragment();
                 ingrediensFragment.setRecipe(recipe.getIngredience());
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container,ingrediensFragment).commit();
+
+                if(GlobalValues.isTwoPane()) {
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container2,ingrediensFragment).commit();
+                } else {
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container,ingrediensFragment).commit();
+                }
             }
         });
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.steps_recycler_view);
