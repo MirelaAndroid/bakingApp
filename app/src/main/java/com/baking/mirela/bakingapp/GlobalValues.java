@@ -16,6 +16,15 @@ public final class GlobalValues {
     private static ArrayList<Steps> steps;
     private static ArrayList<Ingredient> i;
     private static boolean isTwoPane;
+    private static int position;
+
+    public static int getPosition() {
+        return position;
+    }
+
+    public static void setPosition(int position) {
+        GlobalValues.position = position;
+    }
 
     public static String getIngredients() {
         return ingredients;

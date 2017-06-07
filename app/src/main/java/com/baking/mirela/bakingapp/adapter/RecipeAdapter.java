@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.baking.mirela.bakingapp.DetailActivity;
+import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.model.Recipe;
 import com.baking.mirela.bakingapp.ui.DetailRecipeFragment;
@@ -45,11 +46,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         @Override
         public void onClick(View v) {
 
-            Log.e("kotek", "in on click"  + getAdapterPosition());
+            GlobalValues.setPosition(getAdapterPosition());
 
             Intent intent = new Intent(mActivity, DetailActivity.class);
-
-            intent.putExtra("position", getAdapterPosition()); //Optional parameters
 
             mActivity.startActivity(intent);
 
