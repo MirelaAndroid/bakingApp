@@ -46,10 +46,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         @Override
         public void onClick(View v) {
 
-            GlobalValues.setPosition(getAdapterPosition());
-
             Intent intent = new Intent(mActivity, DetailActivity.class);
-
+            intent.putExtra("position", getAdapterPosition());
             mActivity.startActivity(intent);
 
         }

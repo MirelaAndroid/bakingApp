@@ -65,10 +65,32 @@ public class StepFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_step, container, false);
         ButterKnife.bind(this, rootView);
+        releasePlayer();
         if (step == null) {
             step = GlobalValues.getStep();
         }
-        description.setText(step.get(id).getShortDescription());
+
+
+        description.setText(step.get(id).getDescription());
+        if (step.get(id).getId() < step.size()) {
+
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    StepFragment stepFragment = new StepFragment();
+                    stepFragment.setSteps(step, id + 1);
+                    stepFragment.setAppCompatActivity(appCompatActivity);
+                    if (GlobalValues.isTwoPane()) {
+                        appCompatActivity.getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container2, stepFragment).commit();
+                    } else {
+                        appCompatActivity.getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, stepFragment).commit();
+                    }
+
+                }
+            });
+        } else next.setVisibility(View.INVISIBLE);
 
         if (step.get(id).getId() > 0) {
             back.setOnClickListener(new View.OnClickListener() {
@@ -89,27 +111,9 @@ public class StepFragment extends Fragment {
             });
         } else back.setVisibility(View.INVISIBLE);
 
-        if (step.get(id).getId() < step.size() - 1) {
-            next.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                    StepFragment stepFragment = new StepFragment();
-                    stepFragment.setSteps(step, id + 1);
-                    stepFragment.setAppCompatActivity(appCompatActivity);
-                    if (GlobalValues.isTwoPane()) {
-                        appCompatActivity.getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_container2, stepFragment).commit();
-                    } else {
-                        appCompatActivity.getSupportFragmentManager().beginTransaction();
-                    }
-
-                }
-            });
-        } else next.setVisibility(View.INVISIBLE);
         // Initialize the player.
         if (!step.get(id).getVideoURL().isEmpty()) {
-            Log.d("kotek", step.get(id).getVideoURL());
             initializePlayer(Uri.parse(step.get(id).getVideoURL()));
         } else {
             mPlayerView.setVisibility(View.INVISIBLE);
@@ -119,8 +123,8 @@ public class StepFragment extends Fragment {
 
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onPause() {
+        super.onPause();
         releasePlayer();
     }
 

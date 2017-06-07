@@ -60,7 +60,7 @@ public class DetailActivity extends AppCompatActivity {
             fragment.setActivity(this);
             ArrayList<Recipe> recipe = GlobalValues.getRecipe();
             if(recipe != null) {
-                fragment.setRecipe(recipe.get(GlobalValues.getPosition()));
+                fragment.setRecipe(recipe.get(getIntent().getExtras().getInt("position")));
             }
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, fragment).commit();
