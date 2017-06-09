@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.adapter.StepsAdapter;
 import com.baking.mirela.bakingapp.model.Recipe;
 
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +45,6 @@ public class DetailRecipeFragment extends Fragment {
     public void setActivity(AppCompatActivity activity){
         appCompatActivity = activity;
     }
-
 
     @Nullable
     @Override

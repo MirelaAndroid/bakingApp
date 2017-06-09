@@ -18,7 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".DetailActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation"></activity>
 
         <receiver android:name=".IngredientsWidget">
             <intent-filter>

@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.baking.mirela.bakingapp.model.Recipe;
-import com.baking.mirela.bakingapp.parser.JsonParser;
 import com.baking.mirela.bakingapp.ui.DetailRecipeFragment;
 import com.baking.mirela.bakingapp.ui.IngrediensFragment;
-import com.baking.mirela.bakingapp.ui.MainFragment;
 
 import java.util.ArrayList;
 
@@ -20,13 +18,10 @@ public class DetailActivity extends AppCompatActivity {
 
     private boolean mTwoPane;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
 
         if (findViewById(R.id.item_list) != null) {
             // The detail container view will be present only in the

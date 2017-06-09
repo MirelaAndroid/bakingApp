@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baking.mirela.bakingapp.GlobalValues;
@@ -27,6 +28,7 @@ import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -43,10 +45,10 @@ public class StepFragment extends Fragment {
     @BindView(R.id.next) Button next;
     @BindView(R.id.stepText) TextView description;
     @BindView(R.id.playerView) SimpleExoPlayerView mPlayerView;
+    @BindView(R.id.image) ImageView image;
 
     private ArrayList<Steps> step;
     private AppCompatActivity appCompatActivity;
-
     private int id;
     private SimpleExoPlayer mExoPlayer;
 
@@ -71,6 +73,12 @@ public class StepFragment extends Fragment {
         }
 
 
+        if(step.get(id).getThumbnailURL() != null && !step.get(id).getThumbnailURL().isEmpty()) {
+            Picasso.with(getContext()).load(step.get(id).getThumbnailURL()).into(image);
+        }
+        else{
+            image.setVisibility(View.INVISIBLE);
+        }
         description.setText(step.get(id).getDescription());
         if (step.get(id).getId() < step.size()) {
 
@@ -127,6 +135,7 @@ public class StepFragment extends Fragment {
         super.onPause();
         releasePlayer();
     }
+
 
     /**
      * Release ExoPlayer.

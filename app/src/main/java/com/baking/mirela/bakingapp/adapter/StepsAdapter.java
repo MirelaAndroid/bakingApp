@@ -3,7 +3,6 @@ package com.baking.mirela.bakingapp.adapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,7 @@ import android.widget.TextView;
 
 import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.R;
-import com.baking.mirela.bakingapp.model.Recipe;
 import com.baking.mirela.bakingapp.model.Steps;
-import com.baking.mirela.bakingapp.ui.IngrediensFragment;
 import com.baking.mirela.bakingapp.ui.StepFragment;
 
 import java.util.ArrayList;
@@ -54,7 +51,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.ViewHolder> 
                 mActivity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container2, stepFragment).commit();
             } else {
-
                 mActivity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, stepFragment).commit();
             }
