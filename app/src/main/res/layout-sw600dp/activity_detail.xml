@@ -9,7 +9,7 @@ android:baselineAligned="false"
 android:divider="?android:attr/dividerHorizontal"
 android:orientation="horizontal"
 android:showDividers="middle"
-tools:context="com.baking.mirela.bakingapp.DetailActivity">
+tools:context="com.baking.mirela.bakingapp.activity.mvp.Detail.DetailActivity">
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
@@ -30,7 +30,7 @@ master/detail flow.
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.baking.mirela.bakingapp.DetailActivity" />
+    tools:context="com.baking.mirela.bakingapp.activity.mvp.Detail.DetailActivity" />
 
 <FrameLayout
     android:id="@+id/fragment_container2"

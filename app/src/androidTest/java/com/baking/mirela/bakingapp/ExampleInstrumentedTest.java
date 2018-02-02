@@ -6,6 +6,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.app.FragmentTransaction;
 
+import com.baking.mirela.bakingapp.activity.mvp.Detail.DetailActivity;
 import com.baking.mirela.bakingapp.model.Recipe;
 import com.baking.mirela.bakingapp.ui.DetailRecipeFragment;
 import com.baking.mirela.bakingapp.ui.MainFragment;

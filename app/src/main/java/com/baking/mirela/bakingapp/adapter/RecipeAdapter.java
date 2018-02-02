@@ -4,17 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.baking.mirela.bakingapp.DetailActivity;
-import com.baking.mirela.bakingapp.GlobalValues;
+import com.baking.mirela.bakingapp.activity.mvp.Detail.DetailActivity;
 import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.model.Recipe;
-import com.baking.mirela.bakingapp.ui.DetailRecipeFragment;
 
 import java.util.ArrayList;
 

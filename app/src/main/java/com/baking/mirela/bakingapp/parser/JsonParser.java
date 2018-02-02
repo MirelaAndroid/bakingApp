@@ -49,7 +49,7 @@ public class JsonParser {
                     ingredient.setQuantity(jsonObject.getString("quantity"));
                     ingredients.add(ingredient);
                 }
-                recipe.setIngredience(ingredients);
+                recipe.setIngredient(ingredients);
 
                 ArrayList<Steps> steps =  new ArrayList<Steps>();
                 for(int j = 0; j < stepsJson.length(); j++) {

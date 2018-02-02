@@ -27,18 +27,18 @@ import butterknife.ButterKnife;
  * Created by mirela on 4/6/2017.
  */
 
-public class IngrediensFragment extends Fragment {
+public class IngredientFragment extends Fragment {
 
 
     @BindView(R.id.textView) TextView list;
     ArrayList<Ingredient> ingredience;
 
-    public IngrediensFragment() {
+    public IngredientFragment() {
     }
 
-    public void setRecipe(ArrayList<Ingredient> ingredience) {
-        GlobalValues.setIngredient(ingredience);
-        this.ingredience = ingredience;
+    public void setRecipe(ArrayList<Ingredient> ingredient) {
+        GlobalValues.setIngredient(ingredient);
+        this.ingredience = ingredient;
     }
 
     @Nullable
@@ -58,13 +58,6 @@ public class IngrediensFragment extends Fragment {
         GlobalValues.setIngredients(items);
         list.setText(items);
 
-        ComponentName thisWidget = new ComponentName( getContext(), IngredientsWidget.class);
-
-
-        RemoteViews views = new RemoteViews(getContext().getPackageName(), R.layout.ingredients_widget);
-        ComponentName widget = new ComponentName( getContext(), IngredientsWidget.class );
-        views.setTextViewText(R.id.appwidget_text, items);
-        AppWidgetManager.getInstance( getContext() ).updateAppWidget( thisWidget, views );
         return rootView;
     }
 }

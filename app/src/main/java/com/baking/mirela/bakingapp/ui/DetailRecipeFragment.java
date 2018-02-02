@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.R;
+import com.baking.mirela.bakingapp.activity.mvp.Detail.DetailView;
 import com.baking.mirela.bakingapp.adapter.StepsAdapter;
 import com.baking.mirela.bakingapp.model.Recipe;
 
@@ -25,7 +26,7 @@ import butterknife.ButterKnife;
  * Created by mirela on 4/6/2017.
  */
 
-public class DetailRecipeFragment extends Fragment {
+public class DetailRecipeFragment extends Fragment implements DetailView {
 
     @BindView(R.id.ingredient_button) Button ingredientButton;
 
@@ -54,15 +55,15 @@ public class DetailRecipeFragment extends Fragment {
         ingredientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IngrediensFragment ingrediensFragment = new IngrediensFragment();
-                ingrediensFragment.setRecipe(recipe.getIngredience());
+                IngredientFragment ingredientFragment = new IngredientFragment();
+                ingredientFragment.setRecipe(recipe.getIngredience());
 
                 if(GlobalValues.isTwoPane()) {
                     getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container2,ingrediensFragment).commit();
+                            .replace(R.id.fragment_container2, ingredientFragment).commit();
                 } else {
                     getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container,ingrediensFragment).commit();
+                            .replace(R.id.fragment_container, ingredientFragment).commit();
                 }
             }
         });
@@ -83,6 +84,11 @@ public class DetailRecipeFragment extends Fragment {
             mRecyclerView.setAdapter(mAdapter);
         }
         return  rootView;
+
+    }
+
+    @Override
+    public void displayListOfSteps() {
 
     }
 }

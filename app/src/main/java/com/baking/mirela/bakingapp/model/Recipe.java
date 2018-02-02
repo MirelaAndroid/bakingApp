@@ -47,7 +47,7 @@ public class Recipe implements Serializable{
         this.name = name;
     }
 
-    public void setIngredience(ArrayList<Ingredient> ingredience) {
+    public void setIngredient(ArrayList<Ingredient> ingredience) {
         this.ingredience = ingredience;
     }
 

@@ -1,11 +1,13 @@
-package com.baking.mirela.bakingapp;
+package com.baking.mirela.bakingapp.activity.mvp.Detail;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.baking.mirela.bakingapp.GlobalValues;
+import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.model.Recipe;
 import com.baking.mirela.bakingapp.ui.DetailRecipeFragment;
-import com.baking.mirela.bakingapp.ui.IngrediensFragment;
+import com.baking.mirela.bakingapp.ui.IngredientFragment;
 
 import java.util.ArrayList;
 
@@ -13,10 +15,12 @@ import java.util.ArrayList;
  * Created by mirela on 4/6/2017.
  */
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements DetailView {
 
 
     private boolean mTwoPane;
+
+    private DetailPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,30 +36,32 @@ public class DetailActivity extends AppCompatActivity {
             mTwoPane = true;
         }
 
+        presenter = new DetailPresenterImpl(this, new DetailInteractorImpl());
+
+
+
+        Recipe recipe = presenter.getDetailRecipeToDisplay(getIntent().getExtras().getInt("position"));
+        DetailRecipeFragment fragment = new DetailRecipeFragment();
+
         if(mTwoPane) {
             GlobalValues.setIsTwoPane(true);
-            DetailRecipeFragment fragment = new DetailRecipeFragment();
 
             fragment.setActivity(this);
-            fragment.setRecipe(GlobalValues.getRecipe().get(getIntent().getExtras().getInt("position")));
+            fragment.setRecipe(recipe);
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, fragment).commit();
 
-            IngrediensFragment ingrediensFragment = new IngrediensFragment();
-            ingrediensFragment.setRecipe(GlobalValues.getRecipe().get(getIntent().getExtras().getInt("position")).getIngredience());
+            IngredientFragment ingredientFragment = new IngredientFragment();
+            ingredientFragment.setRecipe(GlobalValues.getRecipe().get(getIntent().getExtras().getInt("position")).getIngredience());
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container2,ingrediensFragment).commit();
+                    .replace(R.id.fragment_container2,ingredientFragment).commit();
 
 
         } else {
-
-            DetailRecipeFragment fragment = new DetailRecipeFragment();
-
             fragment.setActivity(this);
-            ArrayList<Recipe> recipe = GlobalValues.getRecipe();
-            if(recipe != null) {
-                fragment.setRecipe(recipe.get(getIntent().getExtras().getInt("position")));
+            if(GlobalValues.getRecipe() != null) {
+                fragment.setRecipe(GlobalValues.getRecipe().get(getIntent().getExtras().getInt("position")));
             }
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, fragment).commit();
@@ -63,8 +69,17 @@ public class DetailActivity extends AppCompatActivity {
         }
 
 
+    }
 
+    @Override
+    protected void onDestroy() {
+        presenter.onDestroy();
+        super.onDestroy();
 
     }
 
+    @Override
+    public void displayListOfSteps() {
+
+    }
 }
