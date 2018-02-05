@@ -1,5 +1,4 @@
-package com.baking.mirela.bakingapp.ui;
-
+package com.baking.mirela.bakingapp.activity.mvp.Detail;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,21 +13,21 @@ import android.widget.Button;
 
 import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.R;
-import com.baking.mirela.bakingapp.activity.mvp.Detail.DetailView;
 import com.baking.mirela.bakingapp.adapter.StepsAdapter;
 import com.baking.mirela.bakingapp.model.Recipe;
-
+import com.baking.mirela.bakingapp.ui.IngredientFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by mirela on 4/6/2017.
+ * Created by mirela on 5/2/2018.
  */
 
-public class DetailRecipeFragment extends Fragment implements DetailView {
+public class DetailFragment extends Fragment implements DetailView {
 
-    @BindView(R.id.ingredient_button) Button ingredientButton;
+    @BindView(R.id.ingredient_button)
+    Button ingredientButton;
 
     private Recipe recipe;
     private RecyclerView mRecyclerView;
@@ -36,11 +35,11 @@ public class DetailRecipeFragment extends Fragment implements DetailView {
     private RecyclerView.LayoutManager mLayoutManager;
     private AppCompatActivity appCompatActivity;
 
-    public DetailRecipeFragment() {
+    public DetailFragment() {
     }
 
-    public void setRecipe(Recipe r){
-        recipe = r;
+    public void setRecipe(Recipe recipe){
+        this.recipe = recipe;
     }
 
     public void setActivity(AppCompatActivity activity){

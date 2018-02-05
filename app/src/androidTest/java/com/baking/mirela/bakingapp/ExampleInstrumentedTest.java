@@ -7,8 +7,8 @@ import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.app.FragmentTransaction;
 
 import com.baking.mirela.bakingapp.activity.mvp.Detail.DetailActivity;
+import com.baking.mirela.bakingapp.activity.mvp.Detail.DetailFragment;
 import com.baking.mirela.bakingapp.model.Recipe;
-import com.baking.mirela.bakingapp.ui.DetailRecipeFragment;
 import com.baking.mirela.bakingapp.ui.MainFragment;
 
 import org.junit.Rule;
@@ -81,7 +81,7 @@ public class ExampleInstrumentedTest {
         mDetailActivityRule.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                DetailRecipeFragment fragment = startDetailFragment();
+                DetailFragment fragment = startDetailFragment();
             }
         });
         onView(withId(R.id.fragment_container)).check(matches(isDisplayed()));
@@ -89,10 +89,10 @@ public class ExampleInstrumentedTest {
 
     }
 
-    private DetailRecipeFragment startDetailFragment() {
+    private DetailFragment startDetailFragment() {
         DetailActivity activity = (DetailActivity) mDetailActivityRule.getActivity();
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-        DetailRecipeFragment fragment = new DetailRecipeFragment();
+        DetailFragment fragment = new DetailFragment();
 
         Recipe recipe = new Recipe();
         fragment.setRecipe(recipe);

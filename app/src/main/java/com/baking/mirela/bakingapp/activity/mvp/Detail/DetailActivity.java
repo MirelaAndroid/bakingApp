@@ -6,10 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.model.Recipe;
-import com.baking.mirela.bakingapp.ui.DetailRecipeFragment;
 import com.baking.mirela.bakingapp.ui.IngredientFragment;
-
-import java.util.ArrayList;
 
 /**
  * Created by mirela on 4/6/2017.
@@ -41,7 +38,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
 
         Recipe recipe = presenter.getDetailRecipeToDisplay(getIntent().getExtras().getInt("position"));
-        DetailRecipeFragment fragment = new DetailRecipeFragment();
+        DetailFragment fragment = new DetailFragment();
 
         if(mTwoPane) {
             GlobalValues.setIsTwoPane(true);

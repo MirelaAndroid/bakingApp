@@ -1,14 +1,8 @@
 package com.baking.mirela.bakingapp.activity.mvp.Detail;
 
-import android.app.Activity;
-
 import com.baking.mirela.bakingapp.GlobalValues;
-import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.model.Recipe;
-import com.baking.mirela.bakingapp.ui.DetailRecipeFragment;
-import com.baking.mirela.bakingapp.ui.IngredientFragment;
 
-import java.util.ArrayList;
 
 /**
  * Created by mirela on 1/2/2018.
