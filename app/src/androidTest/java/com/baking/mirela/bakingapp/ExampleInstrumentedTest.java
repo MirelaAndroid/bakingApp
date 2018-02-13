@@ -8,8 +8,9 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.baking.mirela.bakingapp.activity.mvp.Detail.DetailActivity;
 import com.baking.mirela.bakingapp.activity.mvp.Detail.DetailFragment;
+import com.baking.mirela.bakingapp.activity.mvp.Main.MainActivity;
 import com.baking.mirela.bakingapp.model.Recipe;
-import com.baking.mirela.bakingapp.ui.MainFragment;
+import com.baking.mirela.bakingapp.activity.mvp.Main.MainFragment;
 
 import org.junit.Rule;
 import org.junit.Test;

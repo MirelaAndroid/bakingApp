@@ -1,4 +1,4 @@
-package com.baking.mirela.bakingapp;
+package com.baking.mirela.bakingapp.activity.mvp.Ingredient;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -6,6 +6,10 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
+
+import com.baking.mirela.bakingapp.GlobalValues;
+import com.baking.mirela.bakingapp.activity.mvp.Main.MainActivity;
+import com.baking.mirela.bakingapp.R;
 
 /**
  * Implementation of App Widget functionality.

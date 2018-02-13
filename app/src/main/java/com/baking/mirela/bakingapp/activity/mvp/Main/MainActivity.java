@@ -1,8 +1,9 @@
-package com.baking.mirela.bakingapp;
+package com.baking.mirela.bakingapp.activity.mvp.Main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.asyncTask.FetchRecipesAsyncTask;
 
 public class MainActivity extends AppCompatActivity {

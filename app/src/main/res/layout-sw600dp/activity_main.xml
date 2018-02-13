@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:baselineAligned="false"
     android:orientation="horizontal"
-    tools:context=".MainActivity">
+    tools:context=".activity.mvp.Main.MainActivity">
 
     <fragment
         android:id="@+id/main_fragment"
-        android:name="com.baking.mirela.bakingapp.ui.MainFragment"
+        android:name="com.baking.mirela.bakingapp.activity.mvp.Main.MainFragment"
         android:layout_width="400dp"
         android:layout_height="match_parent" />
 

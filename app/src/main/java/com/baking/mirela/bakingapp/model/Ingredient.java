@@ -7,9 +7,9 @@ import java.io.Serializable;
  */
 
 public class Ingredient implements Serializable {
-    String quantity;
-    String measure;
-    String ingredient;
+    private String quantity;
+    private String measure;
+    private String ingredient;
 
     public String getQuantity() {
         return quantity;

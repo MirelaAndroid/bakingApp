@@ -1,4 +1,4 @@
-package com.baking.mirela.bakingapp.ui;
+package com.baking.mirela.bakingapp.activity.mvp.Main;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

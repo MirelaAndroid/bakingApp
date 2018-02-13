@@ -8,7 +8,7 @@ import com.baking.mirela.bakingapp.NetworkUtil;
 import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.model.Recipe;
 import com.baking.mirela.bakingapp.parser.JsonParser;
-import com.baking.mirela.bakingapp.ui.MainFragment;
+import com.baking.mirela.bakingapp.activity.mvp.Main.MainFragment;
 
 import java.net.URL;
 import java.util.ArrayList;

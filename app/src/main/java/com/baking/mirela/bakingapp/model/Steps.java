@@ -7,11 +7,11 @@ import java.io.Serializable;
  */
 
 public class Steps implements Serializable {
-    int id;
-    String shortDescription;
-    String description;
-    String videoURL;
-    String thumbnailURL;
+    private int id;
+    private String shortDescription;
+    private String description;
+    private String videoURL;
+    private String thumbnailURL;
 
     public int getId() {
         return id;

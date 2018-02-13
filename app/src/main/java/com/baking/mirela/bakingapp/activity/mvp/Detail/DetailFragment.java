@@ -15,7 +15,7 @@ import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.adapter.StepsAdapter;
 import com.baking.mirela.bakingapp.model.Recipe;
-import com.baking.mirela.bakingapp.ui.IngredientFragment;
+import com.baking.mirela.bakingapp.activity.mvp.Ingredient.IngredientFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

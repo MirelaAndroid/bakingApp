@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.model.Steps;
-import com.baking.mirela.bakingapp.ui.StepFragment;
+import com.baking.mirela.bakingapp.activity.mvp.step.StepFragment;
 
 import java.util.ArrayList;
 

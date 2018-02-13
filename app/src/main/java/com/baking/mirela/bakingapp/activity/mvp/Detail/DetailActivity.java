@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.model.Recipe;
-import com.baking.mirela.bakingapp.ui.IngredientFragment;
+import com.baking.mirela.bakingapp.activity.mvp.Ingredient.IngredientFragment;
 
 /**
  * Created by mirela on 4/6/2017.
@@ -34,8 +34,6 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         }
 
         presenter = new DetailPresenterImpl(this, new DetailInteractorImpl());
-
-
 
         Recipe recipe = presenter.getDetailRecipeToDisplay(getIntent().getExtras().getInt("position"));
         DetailFragment fragment = new DetailFragment();

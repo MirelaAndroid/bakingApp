@@ -1,4 +1,4 @@
-package com.baking.mirela.bakingapp.ui;
+package com.baking.mirela.bakingapp.activity.mvp.step;
 
 import android.net.Uri;
 import android.os.Bundle;

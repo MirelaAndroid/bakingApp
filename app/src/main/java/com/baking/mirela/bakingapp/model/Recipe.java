@@ -8,12 +8,12 @@ import java.util.ArrayList;
  */
 
 public class Recipe implements Serializable{
-    int id;
-    String name;
-    ArrayList<Ingredient> ingredience;
-    ArrayList<Steps> steps;
-    String servings;
-    String image;
+    private int id;
+    private String name;
+    private ArrayList<Ingredient> ingredience;
+    private ArrayList<Steps> steps;
+    private String servings;
+    private String image;
 
     public int getId() {
         return id;

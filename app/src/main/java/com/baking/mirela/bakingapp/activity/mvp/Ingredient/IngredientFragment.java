@@ -1,19 +1,14 @@
-package com.baking.mirela.bakingapp.ui;
+package com.baking.mirela.bakingapp.activity.mvp.Ingredient;
 
 
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RemoteViews;
 import android.widget.TextView;
 
-import com.baking.mirela.bakingapp.IngredientsWidget;
 import com.baking.mirela.bakingapp.R;
 import com.baking.mirela.bakingapp.GlobalValues;
 import com.baking.mirela.bakingapp.model.Ingredient;
