@@ -71,17 +71,16 @@ public class StepFragment extends Fragment {
         if (step == null) {
             step = GlobalValues.getStep();
         }
+        Log.d("kotek", "step size" + step.size() + " id " + id);
 
-
-        if(step.get(id).getThumbnailURL() != null && !step.get(id).getThumbnailURL().isEmpty()) {
+        if(step.size() > id && step.get(id).getThumbnailURL() != null && !step.get(id).getThumbnailURL().isEmpty()) {
             Picasso.with(getContext()).load(step.get(id).getThumbnailURL()).into(image);
-        }
-        else{
+        } else {
             image.setVisibility(View.INVISIBLE);
         }
-        description.setText(step.get(id).getDescription());
-        if (step.get(id).getId() < step.size()) {
 
+        if (step.size() > id) {
+            description.setText(step.get(id).getDescription());
             next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -98,7 +97,10 @@ public class StepFragment extends Fragment {
 
                 }
             });
-        } else next.setVisibility(View.INVISIBLE);
+        } else {
+            next.setVisibility(View.INVISIBLE);
+            return rootView;
+        }
 
         if (step.get(id).getId() > 0) {
             back.setOnClickListener(new View.OnClickListener() {
