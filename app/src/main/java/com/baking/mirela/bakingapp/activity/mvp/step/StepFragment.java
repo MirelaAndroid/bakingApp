@@ -71,15 +71,15 @@ public class StepFragment extends Fragment {
         if (step == null) {
             step = GlobalValues.getStep();
         }
-        Log.d("kotek", "step size" + step.size() + " id " + id);
-
-        if(step.size() > id && step.get(id).getThumbnailURL() != null && !step.get(id).getThumbnailURL().isEmpty()) {
-            Picasso.with(getContext()).load(step.get(id).getThumbnailURL()).into(image);
-        } else {
-            image.setVisibility(View.INVISIBLE);
-        }
 
         if (step.size() > id) {
+            if(step.get(id).getThumbnailURL() != null && !step.get(id).getThumbnailURL().isEmpty()) {
+                Log.d("kotek", "image to display" + step.get(id).getThumbnailURL() );
+                image.setVisibility(View.VISIBLE);
+                Picasso.with(getContext()).load(step.get(id).getThumbnailURL()).into(image);
+            } else {
+                image.setVisibility(View.GONE);
+            }
             description.setText(step.get(id).getDescription());
             next.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,16 +97,15 @@ public class StepFragment extends Fragment {
 
                 }
             });
-        } else {
-            next.setVisibility(View.INVISIBLE);
-            return rootView;
+            if (step.size() - 1 == id) {
+                next.setVisibility(View.GONE);
+            }
         }
 
         if (step.get(id).getId() > 0) {
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     StepFragment stepFragment = new StepFragment();
                     stepFragment.setSteps(step, id - 1);
                     stepFragment.setAppCompatActivity(appCompatActivity);
@@ -119,14 +118,14 @@ public class StepFragment extends Fragment {
                     }
                 }
             });
-        } else back.setVisibility(View.INVISIBLE);
+        } else back.setVisibility(View.GONE);
 
 
         // Initialize the player.
         if (!step.get(id).getVideoURL().isEmpty()) {
             initializePlayer(Uri.parse(step.get(id).getVideoURL()));
         } else {
-            mPlayerView.setVisibility(View.INVISIBLE);
+            mPlayerView.setVisibility(View.GONE);
         }
         return rootView;
     }
