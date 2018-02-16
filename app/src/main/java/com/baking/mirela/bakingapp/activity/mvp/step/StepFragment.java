@@ -74,7 +74,6 @@ public class StepFragment extends Fragment {
 
         if (step.size() > id) {
             if(step.get(id).getThumbnailURL() != null && !step.get(id).getThumbnailURL().isEmpty()) {
-                Log.d("kotek", "image to display" + step.get(id).getThumbnailURL() );
                 image.setVisibility(View.VISIBLE);
                 Picasso.with(getContext()).load(step.get(id).getThumbnailURL()).into(image);
             } else {
@@ -160,7 +159,6 @@ public class StepFragment extends Fragment {
             LoadControl loadControl = new DefaultLoadControl();
             mExoPlayer = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, loadControl);
             if (mPlayerView == null) {
-                Log.e("kotek", "mplayer view is null");
                 return;
             }
             mPlayerView.setPlayer(mExoPlayer);

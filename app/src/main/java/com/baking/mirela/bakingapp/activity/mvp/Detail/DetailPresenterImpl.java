@@ -13,7 +13,6 @@ public class DetailPresenterImpl implements DetailPresenter {
     private DetailView detailView;
     private DetailInteractorImpl detailInteractor;
 
-    private Recipe recipe;
 
     public DetailPresenterImpl(DetailView detailView, DetailInteractorImpl detailInteractor){
         this.detailView = detailView;
