@@ -55,7 +55,7 @@ public class DetailFragment extends Fragment implements DetailView {
             @Override
             public void onClick(View v) {
                 IngredientFragment ingredientFragment = new IngredientFragment();
-                ingredientFragment.setRecipe(recipe.getIngredience());
+                ingredientFragment.presenter.setRecipe(recipe.getIngredience());
 
                 if(GlobalValues.isTwoPane()) {
                     getActivity().getSupportFragmentManager().beginTransaction()

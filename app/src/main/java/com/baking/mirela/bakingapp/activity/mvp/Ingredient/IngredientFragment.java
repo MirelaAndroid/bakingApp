@@ -26,14 +26,10 @@ public class IngredientFragment extends Fragment {
 
 
     @BindView(R.id.textView) TextView list;
-    ArrayList<Ingredient> ingredience;
+
+    public IngredientPresenterImpl presenter = new IngredientPresenterImpl();
 
     public IngredientFragment() {
-    }
-
-    public void setRecipe(ArrayList<Ingredient> ingredient) {
-        GlobalValues.setIngredient(ingredient);
-        this.ingredience = ingredient;
     }
 
     @Nullable
@@ -42,16 +38,9 @@ public class IngredientFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_ingredients, container, false);
         ButterKnife.bind(this, rootView);
-        String items ="";
 
-        if(ingredience == null) {
-            ingredience = GlobalValues.getIngredient();
-        }
-        for(int i=0; i< ingredience.size(); i++){
-            items += ingredience.get(i).getIngredient() + ": " + ingredience.get(i).getQuantity() + ingredience.get(i).getMeasure() + "\n\n";
-        }
-        GlobalValues.setIngredients(items);
-        list.setText(items);
+
+        list.setText(presenter.displayIngredients());
 
         return rootView;
     }

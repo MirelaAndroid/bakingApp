@@ -48,7 +48,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
                     .add(R.id.fragment_container, fragment).commit();
 
             IngredientFragment ingredientFragment = new IngredientFragment();
-            ingredientFragment.setRecipe(GlobalValues.getRecipe().get(getIntent().getExtras().getInt("position")).getIngredience());
+            ingredientFragment.presenter.setRecipe(GlobalValues.getRecipe().get(getIntent().getExtras().getInt("position")).getIngredience());
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container2,ingredientFragment).commit();
 
